@@ -131,6 +131,12 @@
         }
 
         @media (max-width: 768px) {
+
+            #columnSelector,
+            #themeSelector {
+                display: none;
+            }
+
             .chart-container {
                 width: 100%;
             }
@@ -581,21 +587,21 @@
         </div>
         <div>
 
-            <a class=" " style="color:rgb(2, 224, 69);font-size: 20px; padding-right: 20px;"
-                href="https://www.darwinexzero.com/es/darwin/MFZE/performance" target="_blank">Darwinex MZFE
+            <a class=" " style="color:rgb(2, 224, 69);font-size: 18px; padding-right: 20px;"
+                href="https://www.darwinexzero.com/es/darwin/MFZE/performance" target="_blank">Darwin MZFE
             </a>
-            <a class="" style="color:orange;font-size: 20px; padding-right: 20px;"
-                href="https://www.darwinexzero.com/es/darwin/FRHI/performance" target="_blank">Darwinex FRHI
+            <a class="" style="color:orange;font-size: 18px; padding-right: 20px;"
+                href="https://www.darwinexzero.com/es/darwin/FRHI/performance" target="_blank">Darwin FRHI
             </a>
-            <a class="" style="color:rgb(224, 56, 174);font-size: 20px; padding-right: 20px;"
-                href="https://www.darwinexzero.com/es/darwin/WJOU/performance" target="_blank">Darwinex WJOU
+            <a class="" style="color:rgb(224, 56, 174);font-size: 18px; padding-right: 20px;"
+                href="https://www.darwinexzero.com/es/darwin/WJOU/performance" target="_blank">Darwin WJOU
             </a>
             <P class="" style="color:rgb(255, 248, 39);font-size: 16px; padding-right: 20px;" href="" target="_blank">
 
-                CODIGO DESCUENTO CUENTA DARWINEX <span
-                    style="color:rgb(2, 224, 69);font-size: 16px; padding-right: 20px;padding-left: 20px;">DWZ2319043MGM</span>
-                <span style="color:orange;font-size: 16px; padding-right: 20px;">DWZ2318655MGM</span>
-                <span style="color:rgb(255, 248, 39);font-size: 16px; padding-right: 20px;">DWZ2319040MGM</span>
+                CODIGO DESCUENTO EN DARWINEX <span
+                    style="color:rgb(2, 224, 69);font-size: 14px; padding-right: 10px;padding-left: 10px;">DWZ2319043MGM</span>
+                <span style="color:orange;font-size: 14px; padding-right: 10px;">DWZ2318655MGM</span>
+                <span style="color:rgb(255, 248, 39);font-size: 14px; padding-right: 10px;">DWZ2319040MGM</span>
             </P>
         </div>
         <div class="symbol-selector" id="symbolSelector">
@@ -615,15 +621,28 @@
     </div>
 
     <script>
-        const forexPairs = [
-            "XAUUSD", "EURUSD", "USDJPY", "EURJPY", "EURGBP", "GBPUSD", "USDCHF", "AUDUSD", "USDCAD", "NZDUSD",
-            "GBPJPY", "EURCHF", "AUDJPY", "CADJPY", "NZDJPY", "GBPCHF", "EURAUD",
-            "AUDNZD"
-        ];
 
-        const cryptoPairs = [
-            "BTCUSD", "ETHUSD"
-        ];
+        let forexPairs;
+
+        if (window.innerWidth < 764) {
+            // Si la resolución es menor a 764 píxeles, solo tomamos los primeros 3 pares
+            forexPairs = ["XAUUSD", "EURUSD", "USDJPY"];
+
+
+
+
+
+        } else {
+            // Si la resolución es mayor o igual a 764 píxeles, tomamos todos los pares
+            forexPairs = [
+                "XAUUSD", "EURUSD", "USDJPY", "EURJPY", "EURGBP", "GBPUSD", "USDCHF", "AUDUSD", "USDCAD", "NZDUSD",
+                "GBPJPY", "EURCHF", "AUDJPY", "CADJPY", "NZDJPY", "GBPCHF", "EURAUD", "AUDNZD"
+            ];
+        }
+
+        const cryptoPairs = ["BTCUSD", "ETHUSD"];
+
+
 
         const forexContainer = document.getElementById('forexContainer');
         const cryptoContainer = document.getElementById('cryptoContainer');
@@ -939,7 +958,11 @@
         });
 
         // Initialize charts with beast mode theme, ADX indicator, Daily timeframe, and 3 columns
-        initCharts('beast-mode', 'RSI', 'D', 3);
+        if (window.innerWidth < 764) {
+            initCharts('beast-mode', 'RSI', 'D', 1);
+        } else {
+            initCharts('beast-mode', 'RSI', 'D', 3);
+        }
         initSymbolSelector();
     </script>
 
@@ -989,7 +1012,7 @@
         }
 
         h2 {
-            padding-bottom: 1em !important;
+            /*padding-bottom: 1em !important;*/
         }
 
         @media (max-width: 768px) {
@@ -999,7 +1022,7 @@
             }
 
             h2 {
-                margin-top: 10.5rem !important;
+                /* margin-top: 10.5rem !important;*/
             }
         }
     </style>
